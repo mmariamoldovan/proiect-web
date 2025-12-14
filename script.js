@@ -32,6 +32,8 @@ if(document.getElementById('lista-servicii')){
 function calculeazaPret(){
     var pretInitial=document.getElementById('pret-initial').value;
     pretInitial=Number(pretInitial);
+    document.getElementById('rezultat').innerHTML='<p>Calculez...</p>';
+    setTimeout(function(){
     if(pretInitial<=0 || isNaN(pretInitial)){
         document.getElementById('rezultat').innerHTML='<p style="color: red; background-color:#ffdddd; "> Te rog introdu un pret mai mare ca 0!</p>';
         return;
@@ -42,7 +44,7 @@ function calculeazaPret(){
     mesaj=mesaj+'<p>Pret initial:<strong>'+pretInitial+'RON</strong></p>';
     mesaj=mesaj+'<p> Reducere 10%: <strong style="color: #e74c3c;">-'+reducere+'RON</strong></p>';
     mesaj=mesaj+'<p style="font-size:22px;color:#27ae60;"><strong>Pret final: ' + pretFinal+ 'RON</strong></p>';
-document.getElementById('rezultat').innerHTML=mesaj;}
+document.getElementById('rezultat').innerHTML=mesaj;},300)}
 
 function trimiteFormular(){
     var nume=document.getElementById('nume').value;
@@ -63,4 +65,16 @@ function trimiteFormular(){
     document.getElementById('mesaj').value='';
 
 
+}
+window.onscroll=function(){
+    var btn=this.document.getElementById('backToTop');
+    if(btn&&(this.document.body.scrollTop>200||this.document.documentElement.scrollTop>200)){
+        btn.style.display='blcok';
+
+    }else if(btn){
+        btn.style.display='none';
+    }
+};
+function scrollToTop(){
+    window.scrollTo({top:0,behavior:'smooth'})
 }
