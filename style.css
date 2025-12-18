@@ -158,6 +158,8 @@ button:hover{
 #backToTop:hover{
     background-color: #2980b9;
 }
+#filtru-servicii{margin-bottom:20xp;}
+
 @keyframes slideIn{
     from{
         opacity:0;

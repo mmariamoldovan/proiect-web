@@ -1,34 +1,55 @@
-if(document.getElementById('lista-servicii')){
-    var servicii=[
-        {
-            nume:"Curatenie apartamente",
-            descriere:"Curatenie completa pentru apartamente de orice dimensiune. Includem aspirare, stergere praf, curatare bucatarie si baie. "
-        },{
-            nume:"Curatenie birouri",
-            descriere:"Servicii profesionale pentru spatii de birou si comerciale. Program flexibil, inclusiv seara si weekend."
 
-        },
-        {
-            nume:"Curatenie dupa renovare",
-            descriere:"Indepartam tot praful si resturile dupa lucrari. Spalam geamuri, curatare podele si suprafete."
-        },
-        {nume:"Spalare geamuri",
-            descriere:"Geamuri curate si stralucitoare, interior si exterior. Folosim produse profesionale fara dungi."
-        },
-        {
-            nume:"Curatenie generala",
-            descriere:"Curatenie profunda pentru orice tip de spatiu. Ideal pentru primavara sau inainte de evenimente importante din viata ta."
-        }
-
-    ];
-    var container=document.getElementById('lista-servicii');
-    for(var i=0;i<servicii.length;i++){
-        var divServiciu=document.createElement('div');
-        divServiciu.className='serviciu-item';
-        divServiciu.innerHTML='<h4>'+servicii[i].nume+'</h4>'+'<p>'+servicii[i].descriere+'</p>';
-        container.appendChild(divServiciu);
+var servicii = [
+    {
+        nume:"Curatenie apartamente",
+        descriere:"Curatenie completa pentru apartamente de orice dimensiune..."
+    },
+    {
+        nume:"Curatenie birouri",
+        descriere:"Servicii profesionale pentru spatii de birou..."
+    },
+    {
+        nume:"Curatenie dupa renovare",
+        descriere:"Indepartam tot praful si resturile dupa lucrari..."
+    },
+    {
+        nume:"Spalare geamuri",
+        descriere:"Geamuri curate si stralucitoare..."
+    },
+    {
+        nume:"Curatenie generala",
+        descriere:"Curatenie profunda pentru orice tip de spatiu..."
     }
+];
+
+function afiseazaServicii(lista){
+    var container=document.getElementById('lista-servicii');
+    if(!container)return;
+    container.innerHTML='';
+    for(var i=0;i<lista.length;++i){
+        var div=document.createElement('div');
+        div.className='serviciu-item';
+        div.innerHTML='<h4>'+lista[i].nume+'</h4>'+'<p>'+lista[i].descriere+'</p>';
+        container.appendChild(div);
+    }
+
 }
+if(document.getElementById('lista-servicii')){
+ 
+    afiseazaServicii(servicii);
+}
+
+var inputFiltru=document.getElementById('filtru-servicii');
+if(inputFiltru){
+    inputFiltru.addEventListener('input',function(){
+        var text=this.value.toLowerCase();
+        var serviciiFiltrate=servicii.filter(function(serviciu){
+            return serviciu.nume.toLowerCase().includes(text);
+        });
+        afiseazaServicii(serviciiFiltrate);
+    });
+}
+
 function calculeazaPret(){
     var pretInitial=document.getElementById('pret-initial').value;
     pretInitial=Number(pretInitial);
